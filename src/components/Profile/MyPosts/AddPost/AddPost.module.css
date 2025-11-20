@@ -1,0 +1,15 @@
+.add_post {
+  display: flex;
+}
+
+.add_post__input {
+  height: 50px;
+  width: 50%;
+  padding: 0 15px;
+}
+
+.add_post__button {
+  width: 10%;
+  margin-left: 15px;
+  background-color: greenyellow;
+}

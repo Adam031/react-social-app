@@ -1,0 +1,19 @@
+.header {
+  background-color: #282c34;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.item a {
+  color: #fff;
+}
