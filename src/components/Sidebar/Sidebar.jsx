@@ -1,13 +1,25 @@
 import styles from "./Sidebar.module.css"
+import {NavLink} from "react-router-dom";
 
 function Sidebar() {
     return (
         <div className={styles.sidebar}>
             <ul>
-                <li className={styles.active}><a href="#s">Portfolio</a></li>
-                <li><a href="#s">Messages</a></li>
-                <li><a href="#s">News</a></li>
-                <li><a href="#s">Music</a></li>
+                <li className={styles.active}>
+                    <NavLink to="/profile" className={({isActive}) => (isActive ? styles.active : '')}>Profile</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/dialogs" className={({isActive}) => (isActive ? styles.active : '')}>Messages</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/news" className={({isActive}) => (isActive ? styles.active : '')}>News</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/music" className={({isActive}) => (isActive ? styles.active : '')}>Music</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/settings" className={({isActive}) => (isActive ? styles.active : '')}>Settings</NavLink>
+                </li>
             </ul>
         </div>
     )

@@ -1,0 +1,11 @@
+.message {
+  max-width: max-content;
+  font-size: 18px;
+  padding: 6px 15px;
+  border-radius: 20px;
+  background: #e8e7e7;
+}
+
+.message:nth-child(2n) {
+  align-self: flex-end;
+}

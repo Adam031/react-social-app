@@ -24,6 +24,6 @@
   color: #000;
 }
 
-.sidebar ul li.active a {
+.sidebar ul li a.active {
   color: #000;
 }

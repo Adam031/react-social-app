@@ -1,5 +1,6 @@
 import logo from "../../images/logo.svg";
 import styles from "./Header.module.css"
+import {NavLink} from "react-router-dom";
 
 function Header() {
     return (
@@ -7,13 +8,13 @@ function Header() {
             <img src={logo} className="logo" alt="logo" />
             <ul className={styles.menu}>
                 <li className={styles.item}>
-                    <a href="#s">Main</a>
+                    <NavLink to="/profile">Main</NavLink>
                 </li>
                 <li className={styles.item}>
-                    <a href="#s">Messages</a>
+                    <NavLink to="/dialogs/*">Messages</NavLink>
                 </li>
                 <li className={styles.item}>
-                    <a href="#s">Help</a>
+                    <NavLink to="/settings">Settings</NavLink>
                 </li>
             </ul>
         </header>
