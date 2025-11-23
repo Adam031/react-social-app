@@ -1,7 +1,8 @@
 import styles from "./Sidebar.module.css"
 import {NavLink} from "react-router-dom";
+import {Friends} from "./Friends/Friends";
 
-function Sidebar() {
+function Sidebar(props) {
     return (
         <div className={styles.sidebar}>
             <ul>
@@ -21,6 +22,8 @@ function Sidebar() {
                     <NavLink to="/settings" className={({isActive}) => (isActive ? styles.active : '')}>Settings</NavLink>
                 </li>
             </ul>
+
+            <Friends friends={props.state.friends} />
         </div>
     )
 }

@@ -1,32 +1,22 @@
 import styles from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
-import avatar1 from "../../images/avatar.jpeg";
-import avatar2 from "../../images/avatar2.jpg";
-import avatar3 from "../../images/avatar3.jpg";
-import avatar4 from "../../images/avatar4.jpg";
 import {Message} from "./Message/Message";
+import React from "react";
+import {sendMessageActionCreator, updateMessageTextActionCreator} from "../../redux/state";
 
-export const Dialogs = () => {
-    let dialogData = [
-        {id: 1, name: "Byblik", avatar: avatar1},
-        {id: 2, name: "Syslik", avatar: avatar2},
-        {id: 3, name: "Barilka", avatar: avatar3},
-        {id: 4, name: "Tyzik", avatar: avatar4}
-    ]
+export const Dialogs = (props) => {
+    let dialogsElements = props.state.dialogData.map(dialog => <Dialog id={dialog.id} name={dialog.name}
+                                                                       avatar={dialog.avatar}/>)
+    let messageElements = props.state.messageData.map(message => <Message id={message.id} text={message.message}/>)
 
-    let dialogsElements = dialogData.map(
-        dialog => <Dialog id={dialog.id} name={dialog.name} avatar={dialog.avatar} />
-    )
+    const sendMessage = () => {
+        props.dispatch(sendMessageActionCreator());
+    }
 
-
-    let messageData = [
-        {id: 1, message: "Hi!"},
-        {id: 2, message: "Hello!"},
-        {id: 3, message: "How are you?"},
-        {id: 4, message: "Thanks, fine!"}
-    ]
-
-    let messageElements = messageData.map(message => <Message id={message.id} text={message.message} />)
+    const updateMessageText = (e) => {
+        let text = e.target.value;
+        props.dispatch(updateMessageTextActionCreator(text));
+    }
 
     return (
         <div className={styles.dialogs}>
@@ -36,6 +26,11 @@ export const Dialogs = () => {
             </div>
             <div className={styles.messages}>
                 {messageElements}
+                <div className={styles.sendMessage}>
+                    <textarea onChange={updateMessageText}
+                              value={props.state.newMessageText} placeholder="Message.."></textarea>
+                    <button onClick={sendMessage}>Send</button>
+                </div>
             </div>
         </div>
     )

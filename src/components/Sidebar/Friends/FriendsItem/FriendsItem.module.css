@@ -1,0 +1,23 @@
+.friendsItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.friendsItem img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.friendsItem p {
+  font-size: 18px;
+  color: #fff;
+  transition: .3s;
+}
+
+.friendsItem:hover p {
+  color: #000;
+}

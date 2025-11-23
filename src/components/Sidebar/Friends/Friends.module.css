@@ -1,0 +1,17 @@
+.friends {
+  margin-top: 80px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.friends h3 {
+  text-align: left;
+}
+
+.friendsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
