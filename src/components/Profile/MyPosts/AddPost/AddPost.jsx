@@ -1,15 +1,14 @@
 import styles from './AddPost.module.css';
 import React from "react";
-import {addPostActionCreator, updatePostMessageActionCreator} from "../../../../redux/state";
 
 export const AddPost = (props) => {
     const addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.addPost();
     }
 
     const updatePostMessage = (e) => {
         let text = e.target.value;
-        props.dispatch(updatePostMessageActionCreator((text)));
+        props.updatePostMessage(text);
     }
 
     return (

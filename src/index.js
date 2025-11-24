@@ -2,24 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import store from './redux/state'
+import store from './redux/storeRedux'
 import {BrowserRouter} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderUI = (state) => {
-    root.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <App state={state} dispatch={store.dispatch.bind(store)}/>
-            </BrowserRouter>
-        </React.StrictMode>
-    );
-}
-
-rerenderUI(store.getState());
-
-store.subscribe(rerenderUI);
+root.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>
+);
 
 reportWebVitals();

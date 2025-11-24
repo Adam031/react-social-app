@@ -1,6 +1,6 @@
 import styles from "./Sidebar.module.css"
 import {NavLink} from "react-router-dom";
-import {Friends} from "./Friends/Friends";
+import {FriendsContainer} from "./Friends/FriendsContainer";
 
 function Sidebar(props) {
     return (
@@ -23,7 +23,7 @@ function Sidebar(props) {
                 </li>
             </ul>
 
-            <Friends friends={props.state.friends} />
+            <FriendsContainer/>
         </div>
     )
 }
