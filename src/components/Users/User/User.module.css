@@ -1,0 +1,56 @@
+.item {
+  display: flex;
+  gap: 20px;
+}
+
+.avatar img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.avatar button {
+  width: 100%;
+  height: 30px;
+  background-color: greenyellow;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.avatar button:hover {
+  opacity: 0.8;
+}
+
+.info {
+  width: calc(100% - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.info h3 {
+  margin: 0 0 15px;
+  text-align: left;
+  color: #000;
+}
+
+.info a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.info a:hover {
+  text-decoration: underline;
+}
+
+h5 {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0 0 5px;
+  text-align: right;
+}

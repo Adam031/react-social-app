@@ -1,14 +1,20 @@
 import styles from './UserInfo.module.css';
 import avatar from "../../../images/avatar.jpeg";
+import {Preloader} from "../../common/Preloader/Preloader";
 
-function UserInfo() {
+function UserInfo(props) {
+    if (!props.profile) {
+        return <Preloader />;
+    }
+
     return (
         <div className={styles.user_area}>
-            <img src={avatar} alt="avatar" className={styles.user_avatar} />
+            <img src={props.profile.photos.large || avatar} alt="avatar" className={styles.user_avatar} />
             <div>
-                <h3>Porsche 911</h3>
-                <p>City: Poznan</p>
-                <p>Age: 40</p>
+                <h3>{props.profile.fullName}</h3>
+                <p><span>About me:</span> {props.profile.aboutMe}</p>
+                <p><span>Looking for a job:</span> {props.profile.lookingForAJob ? 'YES!!!' : 'NO((('}</p>
+                <p><span>Looking for a job description:</span> {props.profile.lookingForAJobDescription}</p>
             </div>
         </div>
     )

@@ -1,0 +1,27 @@
+.usersList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pagination span {
+  font-size: 20px;
+  padding: 5px 10px;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.pagination span:hover,
+.pagination span.active {
+  background-color: darkgray;
+  color: #fff;
+}

@@ -3,9 +3,14 @@
   padding: 15px 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
 }
 
 .menu {
@@ -14,6 +19,10 @@
   list-style: none;
 }
 
-.item a {
+.header a {
   color: #fff;
+}
+
+.login {
+  padding-right: 20px;
 }

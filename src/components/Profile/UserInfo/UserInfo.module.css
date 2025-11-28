@@ -4,8 +4,20 @@
   margin: 20px 0 40px;
 }
 
+.user_area h3 {
+  margin-top: 5px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
 .user_area p {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.user_area p span {
+  font-weight: bold;
+  display: flex;
+  line-height: 1.5;
 }
 
 .user_avatar {

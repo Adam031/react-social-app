@@ -1,5 +1,6 @@
 const ADD_POST_ACTION = 'ADD-POST';
 const UPDATE_POST_MESSAGE_ACTION = 'UPDATE-POST-MESSAGE';
+const SET_PROFILE = 'SET_PROFILE';
 
 let initialState = {
     postsData: [
@@ -7,7 +8,8 @@ let initialState = {
         {id: 2, title: "My second react post!!!", likesCount: '5'},
         {id: 3, title: "My react post!!!", likesCount: '24'},
     ],
-    postMessage: ''
+    postMessage: '',
+    profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -23,12 +25,18 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 postMessage: action.postMessage
             }
+        case SET_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state;
     }
 }
 
 export const addPostActionCreator = () => ({type: ADD_POST_ACTION})
+export const setProfile = (profile) => ({type: SET_PROFILE, profile})
 export const updatePostMessageActionCreator = (text) =>
     ({type: UPDATE_POST_MESSAGE_ACTION, postMessage: text})
 

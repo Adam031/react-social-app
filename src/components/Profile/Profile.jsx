@@ -3,11 +3,11 @@ import styles from "./Profile.module.css"
 import UserInfo from "./UserInfo/UserInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-function Profile() {
+function Profile(props) {
     return (
         <div className={styles.profile}>
             <img src={content_bg} alt="content"/>
-            <UserInfo/>
+            <UserInfo profile={props.profile} />
             <MyPostsContainer/>
         </div>
     )

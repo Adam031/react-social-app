@@ -13,6 +13,9 @@ function Sidebar(props) {
                     <NavLink to="/dialogs" className={({isActive}) => (isActive ? styles.active : '')}>Messages</NavLink>
                 </li>
                 <li>
+                    <NavLink to="/users" className={({isActive}) => (isActive ? styles.active : '')}>Users</NavLink>
+                </li>
+                <li>
                     <NavLink to="/news" className={({isActive}) => (isActive ? styles.active : '')}>News</NavLink>
                 </li>
                 <li>
