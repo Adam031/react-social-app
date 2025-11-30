@@ -1,3 +1,5 @@
+import {followAPI, usersAPI} from "../api/api";
+
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
@@ -56,5 +58,40 @@ export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page})
 export const setTotalCountUsers = (usersCount) => ({type: SET_TOTAL_COUNT_USERS, usersCount})
 export const setLoading = (isLoading) => ({type: SET_LOADING, isLoading})
 export const setFollowStatus = (status, userId) => ({type: SET_FOLLOW_STATUS, status, userId})
+
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    dispatch(setLoading(true));
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(setUsers(data.items))
+        dispatch(setTotalCountUsers(data.totalCount))
+        dispatch(setLoading(false))
+    });
+}
+
+export const onPaginationClick = (currentPage, pageSize) => (dispatch) => {
+    dispatch(setCurrentPage(currentPage));
+    dispatch(setLoading(true));
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(setUsers(data.items))
+        dispatch(setTotalCountUsers(data.totalCount))
+        dispatch(setLoading(false))
+    });
+}
+
+export const toggleFollow = (userId, isFollowed) => (dispatch) => {
+    if (isFollowed) {
+        followAPI.unfollow(userId).then(status => {
+            if (status === 200) {
+                dispatch(setFollowStatus(false, userId))
+            }
+        });
+    } else {
+        followAPI.follow(userId).then(status => {
+            if (status === 200) {
+                dispatch(setFollowStatus(true, userId))
+            }
+        });
+    }
+}
 
 export default usersReducer;

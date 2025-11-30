@@ -1,10 +1,10 @@
 import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {AddPost} from "./AddPost/AddPost";
-import {AddPostContainer} from "./AddPost/AddPostContainer";
+import AddPostContainer from "./AddPost/AddPostContainer";
 
 function MyPosts(props) {
-    let postsElements = props.profilePage.postsData.map(post => <Post id={post.id} key={post.id} title={post.title} likesCount={post.likesCount}/>)
+    let postsElements = props.profilePage.postsData.map(post =>
+        <Post id={post.id} key={post.id} title={post.title} likesCount={post.likesCount}/>)
 
     return (
         <div className={styles.posts}>

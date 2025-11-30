@@ -1,0 +1,24 @@
+.formField {
+  width: calc(80% - 30px);
+}
+
+.formField textarea,
+.formField input {
+  width: 90%;
+}
+
+.formField.error textarea,
+.formField.error input {
+  border: 1px solid red;
+}
+
+.formField span {
+  display: none;
+}
+
+.formField.error span {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  color: red;
+}

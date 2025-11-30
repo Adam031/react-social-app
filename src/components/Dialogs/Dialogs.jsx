@@ -2,6 +2,8 @@ import styles from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
 import React from "react";
+import {DialogsForm} from "./DialogsForm";
+import {reduxForm} from "redux-form";
 
 export const Dialogs = (props) => {
     let state = props.dialogsPage;
@@ -10,14 +12,11 @@ export const Dialogs = (props) => {
                                                                        avatar={dialog.avatar}/>)
     let messageElements = state.messageData.map(message => <Message id={message.id} key={message.id} text={message.message}/>)
 
-    const sendMessage = () => {
-        props.sendMessage();
+    const sendMessage = (formData) => {
+        props.sendMessage(formData.message);
     }
 
-    const updateMessageText = (e) => {
-        let text = e.target.value;
-        props.updateMessageText(text);
-    }
+    const DialogsReduxForm = reduxForm({form: "dialogsForm"})(DialogsForm)
 
     return (
         <div className={styles.dialogs}>
@@ -27,11 +26,7 @@ export const Dialogs = (props) => {
             </div>
             <div className={styles.messages}>
                 {messageElements}
-                <div className={styles.sendMessage}>
-                    <textarea onChange={updateMessageText}
-                              value={state.newMessageText} placeholder="Message.."></textarea>
-                    <button onClick={sendMessage}>Send</button>
-                </div>
+                <DialogsReduxForm onSubmit={sendMessage} />
             </div>
         </div>
     )

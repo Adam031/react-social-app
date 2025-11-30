@@ -53,6 +53,15 @@ ul, p, a {
   margin: 0;
 }
 
+.checkbox-box {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-box input {
+  height: unset;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

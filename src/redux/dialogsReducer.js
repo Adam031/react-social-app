@@ -4,7 +4,6 @@ import avatar3 from "../images/avatar3.jpg";
 import avatar4 from "../images/avatar4.jpg";
 
 const SEND_MESSAGE_ACTION = 'SEND-MESSAGE';
-const UPDATE_MESSAGE_TEXT_ACTION = 'UPDATE-MESSAGE-TEXT';
 
 let initialState = {
     dialogData: [
@@ -24,17 +23,10 @@ let initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_MESSAGE_TEXT_ACTION: {
-            return {
-                ...state,
-                newMessageText: action.message
-            }
-        }
         case SEND_MESSAGE_ACTION: {
             return {
                 ...state,
-                messageData: [...state.messageData, {id:  5, message: state.newMessageText}],
-                newMessageText: ''
+                messageData: [...state.messageData, {id:  5, message: action.message}],
             }
         }
         default:
@@ -42,8 +34,6 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE_ACTION})
-export const updateMessageTextActionCreator = (text) =>
-    ({type: UPDATE_MESSAGE_TEXT_ACTION, message: text})
+export const sendMessage = (message) => ({type: SEND_MESSAGE_ACTION, message})
 
 export default dialogsReducer;

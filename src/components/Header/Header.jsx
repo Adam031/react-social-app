@@ -20,7 +20,14 @@ function Header(props) {
                 </ul>
             </div>
             <div className={styles.login}>
-                {props.authData.isLogin ? props.authData.login : <NavLink to="/login">Login</NavLink>}
+                {props.authData.isLogin ? (
+                    <>
+                        {props.authData.login} -
+                        <button onClick={props.logout}>Log out</button>
+                    </>
+                ) : (
+                    <NavLink to="/login">Login</NavLink>
+                )}
             </div>
         </header>
     )

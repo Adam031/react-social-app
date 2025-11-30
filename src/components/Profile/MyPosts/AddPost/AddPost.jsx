@@ -1,21 +1,15 @@
-import styles from './AddPost.module.css';
 import React from "react";
+import {AddPostForm} from "./AddPostForm";
+import {reduxForm} from "redux-form";
+
+const AddPostReduxForm = reduxForm({form: 'addPost'})(AddPostForm)
 
 export const AddPost = (props) => {
-    const addPost = () => {
-        props.addPost();
-    }
-
-    const updatePostMessage = (e) => {
-        let text = e.target.value;
-        props.updatePostMessage(text);
+    const addNewPost = (formData) => {
+        props.addPost(formData.postMessage);
     }
 
     return (
-        <div className={styles.add_post}>
-            <input type="text" placeholder="Add post..." value={props.postMessage}
-                   onChange={updatePostMessage} className={styles.add_post__input}/>
-            <button onClick={addPost} className={styles.add_post__button}>Add</button>
-        </div>
+        <AddPostReduxForm onSubmit={addNewPost} />
     )
 }

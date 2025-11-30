@@ -1,3 +1,5 @@
+import {authAPI} from "../api/api";
+
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 
 let initialState = {
@@ -12,14 +14,38 @@ const profileReducer = (state = initialState, action) => {
         case SET_AUTH_DATA:
             return {
                 ...state,
-                ...action.data,
-                isLogin: true
+                ...action.payload,
             }
         default:
             return state;
     }
 }
 
-export const setAuthData = (data) => ({type: SET_AUTH_DATA, data})
+export const setAuthData = (userId, email, login, isLogin) => ({type: SET_AUTH_DATA, payload: {userId, email, login, isLogin}})
+
+export const auth = () => (dispatch) => {
+    authAPI.auth().then(data => {
+        if (data.resultCode === 0) {
+            let {userId, email, login} = data.data;
+            dispatch(setAuthData(userId, email, login, true))
+        }
+    });
+}
+
+export const login = (email, password, rememberMe) => (dispatch) => {
+    authAPI.login(email, password, rememberMe).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(auth())
+        }
+    });
+}
+
+export const logout = () => (dispatch) => {
+    authAPI.logout().then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setAuthData(null, null, null, false))
+        }
+    });
+}
 
 export default profileReducer;
