@@ -59,7 +59,7 @@ export const setTotalCountUsers = (usersCount) => ({type: SET_TOTAL_COUNT_USERS,
 export const setLoading = (isLoading) => ({type: SET_LOADING, isLoading})
 export const setFollowStatus = (status, userId) => ({type: SET_FOLLOW_STATUS, status, userId})
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(setLoading(true));
     usersAPI.getUsers(currentPage, pageSize).then(data => {
         dispatch(setUsers(data.items))

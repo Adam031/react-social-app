@@ -1,8 +1,9 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
-import {setFollowStatus, getUsers, onPaginationClick, toggleFollow} from "../../redux/usersReducer";
+import {setFollowStatus, requestUsers, onPaginationClick, toggleFollow} from "../../redux/usersReducer";
 import React from "react";
 import {Preloader} from "../common/Preloader/Preloader";
+import {getIsLoading, getPagination, getUsers} from "../../redux/usersSelectors";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -25,15 +26,15 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pagination: state.usersPage.pagination,
-        isLoading: state.usersPage.isLoading
+        users: getUsers(state),
+        pagination: getPagination(state),
+        isLoading: getIsLoading(state)
     }
 }
 
 export default connect(mapStateToProps, {
     setFollowStatus,
-    getUsers,
+    getUsers: requestUsers,
     onPaginationClick,
     toggleFollow
 })(UsersContainer);

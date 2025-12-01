@@ -22,3 +22,12 @@
   margin-top: 10px;
   color: red;
 }
+
+.errorBox {
+  display: flex;
+  margin: 0 0 5px;
+  color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

@@ -1,41 +1,36 @@
 import styles from './ProfileStatus.module.css';
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
-export class ProfileStatus extends React.Component {
-    state = {
-        statusValue: this.props.status,
-        editMode: false
+export const ProfileStatus = (props) => {
+    let [editMode, setEditMode] = useState(false);
+    let [statusValue, setStatusValue] = useState(props.status);
+
+    useEffect(() => {
+        setStatusValue(props.status)
+    }, [props.status])
+
+    const updateStatusValue = (e) => {
+        setStatusValue(e.target.value)
     }
 
-    activeEditMode = () => {
-        this.setState({ editMode: !this.state.editMode });
+    const activeEditMode = () => {
+        setEditMode(!editMode);
     }
 
-    exitEditMode = () => {
-        this.setState({ editMode: !this.state.editMode });
-        this.props.updateStatus(this.state.statusValue);
+    const exitEditMode = () => {
+        setEditMode(!editMode);
+        props.updateStatus(statusValue);
     }
 
-    updateStatusValue = (e) => {
-        this.setState({statusValue: e.target.value})
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({statusValue: this.props.status});
-        }
-    }
-
-    render() {
-        return (
-            <div className={styles.profileStatus}>
-                {this.state.editMode ?
-                    <input type="text" value={this.state.statusValue} className={styles.statusInput}
-                           onBlur={this.exitEditMode} onInput={this.updateStatusValue} autoFocus={true}/>
+    return (
+        <div className={styles.profileStatus}>
+            {editMode ?
+                <input type="text" value={statusValue} className={styles.statusInput}
+                       onBlur={exitEditMode} onInput={updateStatusValue} autoFocus={true}/>
                 :
-                    <p className={styles.statusText} onDoubleClick={this.activeEditMode}>{this.state.statusValue || "No status"}</p>
-                }
-            </div>
-        )
-    }
+                <p className={styles.statusText}
+                   onDoubleClick={activeEditMode}>{statusValue || "No status"}</p>
+            }
+        </div>
+    )
 }
