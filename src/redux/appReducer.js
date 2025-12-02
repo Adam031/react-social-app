@@ -1,6 +1,6 @@
 import {auth} from "./authReducer";
 
-const SET_INIT_SUCCESS_TYPE = 'SET_INIT_SUCCESS_TYPE';
+const SET_INIT_SUCCESS_TYPE = 'app/SET_INIT_SUCCESS_TYPE';
 
 let initialState = {
     isInit: false,

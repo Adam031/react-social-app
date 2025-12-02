@@ -1,10 +1,10 @@
 import {followAPI, usersAPI} from "../api/api";
 
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_COUNT_USERS = 'SET_TOTAL_COUNT_USERS';
-const SET_LOADING = 'SET_LOADING';
-const SET_FOLLOW_STATUS = 'SET_FOLLOW_STATUS';
+const SET_USERS = 'users/SET_USERS'
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE'
+const SET_TOTAL_COUNT_USERS = 'users/SET_TOTAL_COUNT_USERS'
+const SET_LOADING = 'users/SET_LOADING'
+const SET_FOLLOW_STATUS = 'users/SET_FOLLOW_STATUS'
 
 let initialState = {
     users: [],
@@ -59,38 +59,35 @@ export const setTotalCountUsers = (usersCount) => ({type: SET_TOTAL_COUNT_USERS,
 export const setLoading = (isLoading) => ({type: SET_LOADING, isLoading})
 export const setFollowStatus = (status, userId) => ({type: SET_FOLLOW_STATUS, status, userId})
 
-export const requestUsers = (currentPage, pageSize) => (dispatch) => {
-    dispatch(setLoading(true));
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-        dispatch(setUsers(data.items))
-        dispatch(setTotalCountUsers(data.totalCount))
-        dispatch(setLoading(false))
-    });
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(setLoading(true))
+
+    const response = await usersAPI.getUsers(currentPage, pageSize)
+
+    dispatch(setUsers(response.items))
+    dispatch(setTotalCountUsers(response.totalCount))
+    dispatch(setLoading(false))
 }
 
-export const onPaginationClick = (currentPage, pageSize) => (dispatch) => {
-    dispatch(setCurrentPage(currentPage));
-    dispatch(setLoading(true));
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-        dispatch(setUsers(data.items))
-        dispatch(setTotalCountUsers(data.totalCount))
-        dispatch(setLoading(false))
-    });
+export const onPaginationClick = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(setCurrentPage(currentPage))
+    dispatch(setLoading(true))
+
+    const response = await usersAPI.getUsers(currentPage, pageSize)
+
+    dispatch(setUsers(response.items))
+    dispatch(setTotalCountUsers(response.totalCount))
+    dispatch(setLoading(false))
 }
 
-export const toggleFollow = (userId, isFollowed) => (dispatch) => {
-    if (isFollowed) {
-        followAPI.unfollow(userId).then(status => {
-            if (status === 200) {
-                dispatch(setFollowStatus(false, userId))
-            }
-        });
-    } else {
-        followAPI.follow(userId).then(status => {
-            if (status === 200) {
-                dispatch(setFollowStatus(true, userId))
-            }
-        });
+export const toggleFollow = (userId, isFollowed) => async (dispatch) => {
+    const apiMethod = isFollowed ? followAPI.unfollow : followAPI.follow
+    const newStatus = !isFollowed
+
+    const response = await apiMethod(userId)
+
+    if (response === 200) {
+        dispatch(setFollowStatus(newStatus, userId))
     }
 }
 

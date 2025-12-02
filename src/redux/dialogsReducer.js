@@ -3,7 +3,7 @@ import avatar2 from "../images/avatar2.jpg";
 import avatar3 from "../images/avatar3.jpg";
 import avatar4 from "../images/avatar4.jpg";
 
-const SEND_MESSAGE_ACTION = 'SEND-MESSAGE';
+const SEND_MESSAGE_ACTION = 'dialogs/SEND-MESSAGE';
 
 let initialState = {
     dialogData: [
